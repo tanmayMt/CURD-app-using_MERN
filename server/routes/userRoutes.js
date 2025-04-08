@@ -54,7 +54,7 @@ router.post("/login",async(req,res)=>{
     
      // Compare the provided password with the stored hashed password
     const isMatch = await bcrypt.compare(password,user.password);
-    if(!isMatch){ // // If password doesn't match, return invalid credentials response
+    if(!isMatch){ // If password doesn't match, return invalid credentials response
       return res.status(401).json({
         success:false,
         message:"Invalid credentials",
@@ -63,12 +63,18 @@ router.post("/login",async(req,res)=>{
     }
 
     // If everything is valid, return success response with user data
+
+    // Destructure 'password1' from the user document and store the rest of the fields in 'rest'
+    // This helps exclude the password1 field from being sent in the response
+    const { password1, ...rest } = user._doc;
+    // Send a success response with the user data (excluding password1)
     res.status(200).json({
       success:true,
       message:"User is Logged in Successfully",
-      data:user
+      data:rest
     })
-  } catch (error) {  // Handle any server errors during login
+  }
+  catch (error) {  // Handle any server errors during login
     // console.log("Login Error:", error);
     res.status(500).send({
         success: false,
