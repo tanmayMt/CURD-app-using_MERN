@@ -1,0 +1,105 @@
+/* Gradient Background */
+.home-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #c3f8ff, #fdf1ff, #ffe6e6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Card Style Section */
+.home-content {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    padding: 3rem;
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+    animation: fadeInUp 1s ease-in-out;
+}
+
+/* Title Styling */
+.home-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #6a11cb;
+    background: -webkit-linear-gradient(#6a11cb, #2575fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1rem;
+}
+
+/* Paragraph */
+.home-description {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 2rem;
+}
+
+/* Buttons */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.login-btn {
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    color: white;
+}
+
+.register-btn {
+    background: linear-gradient(to right, #ff8a00, #e52e71);
+    color: white;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    background: yellow;
+    color: blue;
+
+}
+/* Footer Styles */
+/* Footer is always at the bottom */
+.home-footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #f9fafb;
+    border-top: 1px solid #ddd;
+    font-size: 1rem;
+    color: #444;
+}
+
+.digital-clock {
+    margin-top: 0.5rem;
+    font-weight: bold;
+    color: #6d28d9;
+}
+
+/* Simple fade-up animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

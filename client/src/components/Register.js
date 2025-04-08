@@ -87,6 +87,12 @@ const Register = () => {
       >
         {loading ? 'Registering...' : 'Register'}
       </button>
+        <p style={{ textAlign: 'center', marginTop: '18px', fontSize: '14px', color: '#e0e0e0' }}>
+          <b>Already have an account?{' '}</b>
+          <a href="/login" style={{ color: '#FFD700', textDecoration: 'underline' }}>
+            <b>Login</b>
+          </a>
+        </p>
     </form>
   );
 };

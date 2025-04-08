@@ -41,10 +41,20 @@ router.post("/register",async(req,res)=>{
 
 router.post("/login",async(req,res)=>{
   try {
-    const {email,password} = req.body;
-    const user = await User.findOne({email});
+    const {email,password} = req.body;// Destructuring email and password from request body
+
+    const user = await User.findOne({email});// Finding user by email in the database
+    if(!user){// If user not found, return invalid credentials response
+      return res.status(401).json({
+        success:false,
+        message:"Invalid credentials",
+        error: "Invalid credentials"
+      })
+    }
     
-    if(!user || !(await bcrypt.compare(password,user.password))){
+     // Compare the provided password with the stored hashed password
+    const isMatch = await bcrypt.compare(password,user.password);
+    if(!isMatch){ // // If password doesn't match, return invalid credentials response
       return res.status(401).json({
         success:false,
         message:"Invalid credentials",
@@ -52,20 +62,20 @@ router.post("/login",async(req,res)=>{
       })
     }
 
+    // If everything is valid, return success response with user data
     res.status(200).json({
       success:true,
       message:"User is Logged in Successfully",
       data:user
     })
-  } catch (error) {
+  } catch (error) {  // Handle any server errors during login
     // console.log("Login Error:", error);
     res.status(500).send({
         success: false,
-        message: "Server Errro in Loging!",
+        message: "Server Error in Logging!",
         error
     })
   }
-
 })
 
 
