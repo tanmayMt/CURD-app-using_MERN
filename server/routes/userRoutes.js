@@ -1,7 +1,9 @@
 import express from "express";
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
+import nodemailer from "nodemailer";
 import User from "../models/User.js"
+import { sendEmail } from "../config/sendEmail.js";
 
 
 const router = express.Router();
@@ -24,6 +26,10 @@ router.post("/register",async(req,res)=>{
 
     const Newuser = new User({username, email, password:hashedPassword});
     await Newuser.save();
+
+    // Send email after registration
+    await sendEmail(email, username);
+
     res.status(200).send({
         success: true,
         data: Newuser,

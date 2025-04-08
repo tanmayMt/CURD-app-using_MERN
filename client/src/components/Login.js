@@ -19,7 +19,7 @@ const Login = () => {
       //localStorage.setItem('token', '435435435mfghfh');
       localStorage.setItem('token', res.data.token);
       alert('✅ Logged In');
-      navigate('/');
+      // navigate('/');
     }
     catch (err) {
       console.error(err);

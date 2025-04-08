@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import morgan from 'morgan';
 import connectDb from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js"
 
@@ -12,6 +13,8 @@ const PORT = process.env.PORT || 9000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // Add this line
+// Use morgan middleware
+//app.use(morgan('dev')); // 'dev' format is nice for development
 
 const corsOptions = {
   origin: "http://localhost:3004",
