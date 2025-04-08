@@ -14,8 +14,8 @@ router.post("/register",async(req,res)=>{
     if(existingUser){
       return res.status(400).send({
         success:false,
-        message:"Email already registered"
-      })
+        message:"Email already registered❌"
+      });
     }
 
     //Let's Hashing the password
@@ -27,15 +27,15 @@ router.post("/register",async(req,res)=>{
     res.status(200).send({
         success: true,
         data: Newuser,
-        message: "User registered successfully🚀"
-    })        
+        message: "User registered successfully✅"
+    });        
   } 
   catch (error)
   {
     console.log(error);
     res.status(500).send({
         success: false,
-        message: "Server Errro in Registeration!",
+        message: "Server Errro in Registeration!❌",
         error
     })
   }
@@ -49,8 +49,8 @@ router.post("/login",async(req,res)=>{
     if(!user){// If user not found, return invalid credentials response
       return res.status(401).json({
         success:false,
-        message:"Invalid credentials",
-        error: "Invalid credentials"
+        message:"Invalid credentials❌",
+        error: "Invalid credentials❌"
       })
     }
     
@@ -59,8 +59,8 @@ router.post("/login",async(req,res)=>{
     if(!isMatch){ // If password doesn't match, return invalid credentials response
       return res.status(401).json({
         success:false,
-        message:"Invalid credentials",
-        error: "Invalid credentials"
+        message:"Invalid credentials❌",
+        error: "Invalid credentials❌"
       })
     }
 
@@ -87,7 +87,7 @@ router.post("/login",async(req,res)=>{
     // console.log("Login Error:", error);
     res.status(500).send({
         success: false,
-        message: "Server Error in Logging!",
+        message: "Server Error in Logging!❌",
         error
     })
   }
