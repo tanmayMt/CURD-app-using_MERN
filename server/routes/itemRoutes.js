@@ -9,7 +9,7 @@ router.post("/",async(req,res)=>{
     const newItem = new Item({name, description, price});
 })
 
-router.get("/",async(req,res)=>{
+router.get("/", authMiddleware, async(req,res)=>{
     res.status(200).send({
         success: true,
         data:"Items"
@@ -17,8 +17,7 @@ router.get("/",async(req,res)=>{
 })
 
 router.get('/protected', authMiddleware, (req, res) => {
-  res.send(`Hello User with ID: ${req.userId}}`);
-  console.log(`Hello User with ID: ${req.userId}`);
+  res.status(202).send(`User ID: ${req.userId} & Email ID: ${req.email}`);
 });
 
 export default router;

@@ -18,7 +18,8 @@ const authMiddleware = (req, res, next) => {
     // If valid, attach the user's ID (from the payload) to the request object
     // so that protected routes can access it
     req.userId = verified.userId;    //Make sure your JWT payload actually includes id when the token is created.
-
+    req.email = verified.email;
+    
     // Proceed to the next middleware or route handler
     next();
   }
@@ -31,28 +32,3 @@ const authMiddleware = (req, res, next) => {
 }
 
 export default authMiddleware;
-
-
-// import jwt from 'jsonwebtoken';
-
-// const authMiddleware = (req, res, next) => {
-//   const authHeader = req.headers['authorization'];
-//   const token = authHeader && authHeader.startsWith('Bearer ') ? authHeader.split(' ')[1] : null;
-
-//   if (!token) {
-//     return res.status(401).send({ error: 'Access denied' });
-//   }
-
-//   try {
-//     const verified = jwt.verify(token, process.env.JWT_SECRET);
-//     req.userId = verified.id;
-//     next();
-//   } catch (err) {
-//     console.error('JWT verification error:', err.message);
-//     res.status(401).send({ error: 'Invalid token' });
-//   }
-// };
-
-// export default authMiddleware;
-
-
