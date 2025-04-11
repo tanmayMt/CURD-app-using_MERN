@@ -3,7 +3,8 @@ import dotenv from "dotenv";
 import cors from "cors";
 import morgan from 'morgan';
 import connectDb from "./config/db.js";
-import userRoutes from "./routes/userRoutes.js"
+import userRoutes from "./routes/userRoutes.js";
+import itemRoutes from "./routes/itemRoutes.js";
 
 dotenv.config(); // Load environment variables
 
@@ -29,8 +30,12 @@ connectDb();
 app.get("/", (req, res) => {
     res.status(200).send("<h1>Welcome To the Server of CRUD APP using MERN </h1>");
 });
+app.get((req, res) => {
+    res.status(400).send("<h1>page Not Foud</h1>");
+});
 
 app.use("/users", userRoutes);
+app.use("/items", itemRoutes);
 
 // Handle all undefined routes
 app.use((req, res) => {

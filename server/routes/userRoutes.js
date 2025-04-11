@@ -84,6 +84,7 @@ router.post("/login",async(req,res)=>{
     res.status(200).json({
       success:true,
       message:"User is Logged in Successfully ✅",
+      // token:"Bearer " + token,
       token,
       data:safeUser
     })
