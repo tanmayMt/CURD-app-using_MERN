@@ -71,9 +71,9 @@ router.post("/login",async(req,res)=>{
 
     //Generate a JWT (JSON Web Token) for the authenticated user
     const token = jwt.sign(
-      {userId:user._id}, //Payload: includes the user's unique ID in the token (can be used to identify user later)
+      {userId:user._id,email:user.email}, //Payload: includes the user's unique ID in the token (can be used to identify user later)
       process.env.JWT_SECRET, // Secret key: used to sign the token securely (should be stored safely in environment variables)
-      {expiresIn: "5s"}  // Expiry: the token will expire in 1 day (after which the user will need to log in again)
+      {expiresIn: "1d"}  // Expiry: the token will expire in 1 day (after which the user will need to log in again)
     )
     // If everything is valid, return success response with user data
 
@@ -84,8 +84,8 @@ router.post("/login",async(req,res)=>{
     res.status(200).json({
       success:true,
       message:"User is Logged in Successfully ✅",
-      // token:"Bearer " + token,
-      token,
+      token:"Bearer " + token,
+      //token,
       data:safeUser
     })
   }

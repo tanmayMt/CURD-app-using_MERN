@@ -1,5 +1,6 @@
 import express from "express";
 import Item from "../models/Item.js";
+import authMiddleware from '../middleware/authMiddleware.js';
 
 const router = express.Router() ;
 
@@ -14,5 +15,10 @@ router.get("/",async(req,res)=>{
         data:"Items"
     })
 })
+
+router.get('/protected', authMiddleware, (req, res) => {
+  res.send(`Hello User with ID: ${req.userId}}`);
+  console.log(`Hello User with ID: ${req.userId}`);
+});
 
 export default router;
